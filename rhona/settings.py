@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Author App
     'author.apps.AuthorConfig',
+    #Blog App
+    'blog',
     'crispy_forms',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'#fORM tEMPLATE
