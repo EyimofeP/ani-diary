@@ -10,9 +10,16 @@ class Category(models.Model):
 	description = models.TextField(max_length=200, null=True)
 	picture = models.ImageField(upload_to="category/",null=True)
 
+	def __str__(self):
+		verbose_name_plural = "Categories"
+		return self.name
+
 #Tags DB
-class Tags(models.Model):
+class Tag(models.Model):
 	name = models.CharField(max_length=200, null=True)
+	
+	def __str__(self):
+		return self.name	
 
 #Post DB
 class Post(models.Model):
@@ -23,6 +30,9 @@ class Post(models.Model):
 	post_picture = models.ImageField(upload_to="posts/headers",null=True)
 	slug = models.SlugField(max_length=100,null=True)
 	category = models.ManyToManyField(Category)
-	tags = models.ManyToManyField(Tags)
+	tags = models.ManyToManyField(Tag)
+
+	def __str__(self):
+		return self.title
 
 
