@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div id="colorlib-main">
+		<div class="hero-wrap " style="background-image: url({% static 'images/bg_1.jpg' %});" data-stellar-background-ratio="0.5">
+				<div class="js-halfheight d-flex justify-content-center align-items-center">
+					<div class="col-md-8 text text-center">
+						<div class="desc">
+							<h1 class="mb-4">Register</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7 mx-auto">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								{{ form.first_name|as_crispy_field }}
+							</div>
+							<div class="form-group col-md-6">
+								{{ form.last_name|as_crispy_field }}
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								{{ form.username|as_crispy_field }}
+							</div>
+							<div class="form-group col-md-6">
+								{{ form.email|as_crispy_field }}
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								{{  form.password1.label }}
+								<p>{{ form.password1 }}</p>
+							 	<small id="emailHelp" class="form-text text-muted">Your password shouldn't be entirely numeric and should not resemble personal information.</small>
+							</div>
+							<div class="form-group col-md-6">
+								{{ form.password2|as_crispy_field }}
+							</div>
+						</div>
+						<button class="btn-sm btn-block text-white mb-3" style="background-color: #132238;" type="submit">Register</button>
+					</form>
+					<p class="text-center">If you have an account <a href="{% url 'author:login' %}"><b>Login</b></a> instead</p>
+				</div>
+				
+			</div>
+		</div>
+{% endblock %}
+

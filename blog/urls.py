@@ -10,7 +10,7 @@ urlpatterns = [
 	path("",views.home, name="home"),
 	#rhos.com/blog
 	path("blog/",views.blog, name="blog"),
-	#rhos.com/blog/hello-world/
+	#rhos.com/blog/hello-world/%Y/%m/%d/
 	path("blog/article/",views.article, name="article"),
 	#rhos.com/category
 	path("category/",views.category, name="category"),

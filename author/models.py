@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 
 #Author Model
 class Author(models.Model):
-	author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+	author = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
 	name = models.CharField(max_length=200, null=True)
+	email =models.CharField(max_length=200, null=True)
 	bio = models.TextField(null=True)
 	instagram = models.CharField(max_length=50, null=True)
 	phone = models.CharField(max_length=50, null=True)

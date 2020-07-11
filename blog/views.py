@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Post,Category
 #Home Page
 def home(request):
-	return HttpResponse("Home")
+	posts = Post.objects.order_by("-date")[:3]
+	category = Category.objects.all()
+
+	frontend = {
+		"posts" : posts,
+		"category" : category,
+	}
+	return render(request,"blog/home.html", frontend)
 
 #All Blog Page
 def blog(request):

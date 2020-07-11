@@ -1,0 +1,39 @@
+<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+        <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+            <h1 id="colorlib-logo"><a href="index.html">Rho's <span>Diary</span></a></h1>
+            <nav id="colorlib-main-menu" role="navigation">
+                <ul>
+                    <li 
+                    {% if "/" == request.path %}
+                        class="colorlib-active"
+                    {% endif %}
+                    ><a href="/">Home</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="photography.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="">Profile ({{user.first_name}})</a></li>
+                         <li><a href="javascript:{document.getElementById('logout').submit()}">Logout</a></li>
+                            <form action="{% url 'author:logout' %}" id="logout" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden">
+                            </form>
+                    {% else %}
+                        <li><a href="{% url 'author:login' %}">Admin</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <div class="colorlib-footer">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> Rho's Diary
+                <ul>
+                    <li><a href="#"><i class="icon-whatsapp"></i></a></li>
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                </ul>
+            </div>
+        </aside>

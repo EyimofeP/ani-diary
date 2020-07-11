@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div id="colorlib-main">
+            <div class="hero-wrap js-fullheight" style="background-image: url(static/images/bg_1.jpg);"
+                data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="js-fullheight d-flex justify-content-center align-items-center">
+                    <div class="col-md-8 text text-center">
+                        <div class="img mb-4" style="background-image: url(static/images/author.jpg);"></div>
+                        <div class="desc">
+                            <h2 class="subheading">Hello I'm</h2>
+                            <h1 class="mb-4">Oghenerhona</h1>
+                            <p class="mb-4">A stressed Nigerian Teen and This is my diary.</p>
+                            <p><a href="about.html" class="btn-custom">More About Me <span
+                                        class="ion-ios-arrow-forward"></span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5 pb-2">
+                        <div class="col-md-7 heading-section text-center ftco-animate">
+                            <h2 class="mb-4">Latest Articles</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        	{% if posts %}
+	                    	{% for post in posts %}
+		                        <div class="col-md-4">
+		                            <div class="blog-entry ftco-animate">
+		                                <a href="#" class="img img-2" style="background-image: url({{ post.post_picture.url  }});"></a>
+		                                <div class="text text-2 pt-2 mt-3">
+		                                	{% if post.category %}
+			                                	<span class="category mb-3 d-block">
+				                                	{% for category in post.category.all %}
+				                                    	<a href="#">{{ category.name  }}..</a>
+				                                    {% endfor %}
+				                                </span>
+				                            {% endif %}
+		                                    <h3 class="mb-4"><a href="#">{{ post.title }}</a></h3>
+		                                    <p class="mb-4">{{ post.short_description }}</p>
+		                                    <div class="author mb-4 d-flex align-items-center">
+		                                        <a href="#" class="img" style="background-image: url({{post.author.picture.url}});"></a>
+		                                        <div class="ml-3 info">
+		                                            <span>Written by</span>
+		                                            <h3><a href="#">{{post.author.name}}</a>, <span>{{ post.date }}</span></h3>
+		                                        </div>
+		                                    </div>
+		                                    <div class="meta-wrap align-items-center">
+		                                        <div class="half">
+		                                            <p><a href="#" class="btn py-2">Continue Reading <span
+		                                                        class="ion-ios-arrow-forward"></span></a></p>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                     {% endfor %}
+		                </div>
+		                <div class="col-md-4"></div>
+		                	<div class="col-md-4"></div>
+		                 <div class="row">
+	                        <div class="col-md-6 mx-auto text-center">
+	                            <p>
+	                            <h4 class="display-4"><a href="index.html" class="btn py-2 ">CLICK HERE FOR MORE <span
+	                                        class="ion-ios-arrow-forward"></span></a></h4>
+	                            </p>
+	                        </div>
+	                   	</div>
+
+		                {% else %}
+		                	<h1>No Posts</h1>
+		                {% endif %}
+		                	
+		               
+            </section>
+{% endblock %}

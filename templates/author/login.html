@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div id="colorlib-main">
+		<div class="hero-wrap " style="background-image: url({% static 'images/bg_1.jpg' %});" data-stellar-background-ratio="0.5">
+				<div class="js-halfheight d-flex justify-content-center align-items-center">
+					<div class="col-md-8 text text-center">
+						<div class="desc">
+							<h1 class="mb-4">Login</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7 mx-auto">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-row">
+							<div class="form-group col-md-12">
+    							<label for="username">Username</label>
+   								 <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter Username" name="username">
+    							<small id="usernameHelp" class="form-text text-muted">Make sure your username is valid.</small>
+  							</div>
+  							<div class="form-group col-md-12">
+    							<label for="username">Password</label>
+   								 <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Enter Password" name="password">
+    							<small id="usernameHelp" class="form-text text-muted">Do not share your password with anyone.</small>
+  							</div>
+						</div>
+						<button class="btn-sm btn-block text-white mb-3" style="background-color: #132238;" type="submit">Login</button>
+					</form>
+					<p class="text-center">If you don't have an account <a href="{% url 'author:register' %}"><b>Join Us</b></a> instead</p>
+					<p class="text-center">If you have forgetten your password <a href="{% url 'author:reset_password' %}"><b>Reset</b></a> instead</p>
+				</div>
+				
+			</div>
+		</div>
+{% endblock %}
+
