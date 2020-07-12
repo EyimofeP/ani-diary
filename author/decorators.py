@@ -15,7 +15,7 @@ def admin_only(view_func):
 			group = request.user.groups.all()[0].name
 
 		if group == "author":
-			return redirect("author:profile")
+			return view_func(request, *args, **kwargs)
 		else:
-			return redirect("author:profile")
+			return redirect("author:login")
 	return wrapped_function

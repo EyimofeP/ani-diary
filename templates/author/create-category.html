@@ -1,0 +1,37 @@
+{% extends 'fort.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="display-4 text-center">Create New Category</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 d-none d-lg-block">
+                <ul class="list-group">
+                    <a href="{% url 'author:create-category' %}" class="text-white"><li class="list-group-item active"><i class="fas fa-plus"></i>  Create Category</li></a>
+                    <a href="{% url 'author:settings' %}"><li class="list-group-item"><i class="fas fa-pen"></i> Update Profile</li></a>
+                    <a href="{% url 'blog:home' %}" class="text-white"><li class="list-group-item" id="list-home"><i class="fas fa-book-reader"></i> Go back to Diary</li></a>
+                  </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header text-white text-center">
+                       <h4><i class="fas fa-pencil-alt"></i> Create New Category</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            <button type="submit" class="btn btn-sm btn-block" style="background-color: #e91e63;color: #fff;">Add Category</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+{% endblock %}

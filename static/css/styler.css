@@ -1,0 +1,27 @@
+.navbar{
+    background-color: #e91e63;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #fff;
+}
+
+.navbar-light .navbar-brand{
+    color: #fff;
+}
+
+#list-home{
+    background-color: #e91e63;
+}
+
+.navbar.fixed-bottom{
+    background-color: #ff4081;
+}
+
+h4 p{
+    color: #e91e63;
+}
+
+.card .card-header{
+    background-color: #e91e63;
+}

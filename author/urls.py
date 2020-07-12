@@ -16,4 +16,15 @@ urlpatterns = [
    	path('auth/reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name="author/password_complete.html"), name="password_reset_complete"),
 
    	path("profile/", views.userAdmin, name="profile"),
+   	path("profile/settings/", views.userProfile, name="settings"),
+
+   	path("profile/create/post/", views.PostCreate.as_view(), name="create"),
+   	path("profile/edit/post/<pk>/", views.PostUpdate.as_view(), name="update-post"),
+   	path("profile/post/<pk>/delete/", views.PostDelete.as_view(), name="delete-post"),
+
+   	path("profile/create/tag/", views.TagCreate.as_view(), name="create-tag"),
+   	
+   	path("profile/create/category/", views.CategoryCreate.as_view(), name="create-category"),
+   	path("profile/edit/category/<pk>", views.CategoryUpdate.as_view(), name="update-category"),
+   	path("profile/delete/category/<pk>", views.CategoryDelete.as_view(), name="delete-category"),
 ]

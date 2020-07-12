@@ -42,8 +42,13 @@ INSTALLED_APPS = [
     #Blog App
     'blog',
     'crispy_forms',
+    'froala_editor',
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'#fORM tEMPLATE
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

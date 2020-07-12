@@ -1,0 +1,50 @@
+{% extends 'fort.html' %}
+{% block content %}
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="display-4 text-center">Welcome {{user.author.name}}!</h1>
+                <p class="text-center">
+                    <a href="https:wa.me/{{user.author.phone}}/" target="_blank"><i class="fab fa-whatsapp mr-3"></i></a>
+                    <a href="https:instagram.com/{{user.author.instagram}}/" target="_blank"><i class="fab fa-instagram mr-3"></i></a>
+                    <a href="tel:{{user.author.phone}}" target="_blank"><i class="fas fa-phone mr-3"></i></a>
+                    <a href="mailto:{{user.author.email}}" target="_blank"><i class="fas fa-mail-bulk mr-3"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <ul class="list-group text-center">
+                    <a href="{% url 'author:create' %}" class="text-white"><li class="list-group-item active"><i class="fas fa-plus"></i>  Create Post</li></a>
+                    <li class="list-group-item "><i class="fas fa-book"></i> Number of Posts ({{count}})</li>
+                    <a href="{% url 'author:settings' %}"><li class="list-group-item"><i class="fas fa-pen"></i> Update Profile</li></a>
+                    <a href="{% url 'blog:home' %}" class="text-white"><li class="list-group-item" id="list-home"><i class="fas fa-book-reader"></i> Go back to Diary</li></a>
+                  </ul>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="col-md-6">
+                                <div class="card" style="width: 18rem;">
+                                  <div class="embed-responsive embed-responsive-1by1">
+                                    <img src="{{ post.post_picture.url }}" class="card-img-top embed-responsive-item  img-fluid">
+                                    </div>
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{ post.title }}</h5>
+                                    <p class="card-text">{{post.short_description}}</p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="{% url 'author:update-post' post.id %}" class="btn btn-success"><i class="fas fa-pen"></i></a>
+                                    <a href="{% url 'author:delete-post' post.id %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+{% endblock %}

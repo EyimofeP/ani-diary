@@ -18,8 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from froala_editor import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("blog.urls")),
     path("author/", include("author.urls")),
+    path("froala_editor/", include("froala_editor.urls")),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+

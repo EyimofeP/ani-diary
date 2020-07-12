@@ -9,7 +9,7 @@ class Author(models.Model):
 	bio = models.TextField(null=True)
 	instagram = models.CharField(max_length=50, null=True)
 	phone = models.CharField(max_length=50, null=True)
-	picture = models.ImageField(upload_to="authors/photos", null=True)
+	picture = models.ImageField(upload_to="authors/photos", null=True, default="authors/default.jpeg")
 	date_joined = models.DateTimeField(auto_now_add =True)
 	#Setting name for object
 	def __str__(self):
