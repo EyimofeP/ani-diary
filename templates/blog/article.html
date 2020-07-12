@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+		<div id="colorlib-main">
+			<div class="hero-wrap js-fullheight" style="background-image: url({{article.post_picture.url}});" data-stellar-background-ratio="0.5">
+				<div class="overlay"></div>
+				<div class="js-fullheight d-flex justify-content-center align-items-center">
+					<div class="col-md-8 text text-center">
+						<div class="desc">
+							<h1 class="mb-4">{{article.title|title}}</h1>
+							<p style="color: #000"><a href="{% url 'blog:home' %}" class="btn-custom mr-2" style="color: #000">Home <span class="ion-ios-arrow-forward" style="color: #000"></span></a> <a href="{% url 'blog:blog' %}" class="btn-custom mr-2" style="color: #000">Blog <span class="ion-ios-arrow-forward" style="color: #000"></span></a> <a href="{% url 'blog:article' article.id%}" class="btn-custom" style="color: #000">{{article.title|title}} <span class="ion-ios-arrow-forward" style="color: #000"></span></a></p>
+							<p style="color: #000"><span class="icon-calendar"></span> {{ article.date|date:"F d, Y" }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section class="ftco-section">
+	    	<div class="container">
+	    		<div class="row">
+	    			<div class="col-lg-8 ftco-animate">
+	            <h2 class="mb-3 font-weight-bold">{{article.title|title}}</h2>
+	            <p class="lead">{{article.short_description}}</p>
+	            <p>{{article.main_content|safe}}</p>
+	            <div class="tag-widget post-tag-container mb-5 mt-5">
+	              <div class="tagcloud">
+	              	{% for tag in article.tags_set.all %}
+	                	<button class="tag-cloud-link">tt{{tag.name}}</button>
+	                {% endfor %}
+	              </div>
+	            </div>
+	            
+	            <div class="about-author d-flex p-4 bg-light">
+	              <div class="bio mr-5">
+	                <img src="{{article.author.picture.url}}" alt="{{article.author.name}}" class="img-fluid mb-4" style="width: 200px;">
+	              </div>
+	              <div class="desc">
+	                Written by <h3>{{article.author.name|title}}</h3>
+	                <p>{{article.author.bio}}!</p>
+	              </div>
+	            </div>
+	        
+	          </div> <!-- .col-md-8 -->
+	    			<div class="col-lg-4 sidebar ftco-animate">
+	            <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Category</h3>
+	              <ul class="categories">
+	              	{% if article.category %}
+	              		{% for category in article.category.all %}
+	                		<li><a href="#">{{category.name}} <span>({{category.post_set.all.count}})</span></a></li>
+	              		{% endfor %}
+	                {% else %}
+	                	<h6>No Category for this Article</h6>
+	                {% endif %}
+	              </ul>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Latest Articles</h3>
+	              {% for trend in trends %}
+		              <div class="block-21 mb-4 d-flex">
+		                <a class="blog-img mr-4" style="background-image: url({{trend.post_picture.url}});"></a>
+		                <div class="text">
+		                  <h3 class="heading"><a href="{% url 'blog:article' trend.pk %}">{{trend.title|title}}</a></h3>
+		                  <div class="meta">
+		                    <div><span class="icon-calendar"></span> {{ trend.date|date:"F d, Y" }}</div>
+		                    <div><a href="#"><span class="icon-person"></span> {{trend.author.name|title}}</a></div>
+		                  </div>
+		                </div>
+		              </div>
+		            {% endfor %}
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Tag Cloud</h3>
+	              <ul class="tagcloud">
+	              	{% if article.tags.all %}
+		          	 	{% for tag in article.tags.all %}
+		                	<a class="tag-cloud-link">{{tag}}</a>
+		                {% endfor %}
+		             {% else %}
+		             	<li><a class="tag-cloud-link">No Tags</a></li>
+		            {% endif %}
+	              </ul>
+	            </div>
+	          </div><!-- END COL -->
+	    		</div>
+	    	</div>
+	    </section>
+{% endblock %}
