@@ -31,10 +31,10 @@
 	            
 	            <div class="about-author d-flex p-4 bg-light">
 	              <div class="bio mr-5">
-	                <img src="{{article.author.picture.url}}" alt="{{article.author.name}}" class="img-fluid mb-4" style="width: 200px;">
+	                <a href="{% url 'blog:about' article.author.author.username %}"><img src="{{article.author.picture.url}}" alt="{{article.author.name}}" class="img-fluid mb-4" style="width: 200px;"></a>
 	              </div>
 	              <div class="desc">
-	                Written by <h3>{{article.author.name|title}}</h3>
+	                Written by <a href="{% url 'blog:about' article.author.author.username %}"><h3>{{article.author.name|title}}</h3></a>
 	                <p>{{article.author.bio}}!</p>
 	              </div>
 	            </div>
@@ -86,4 +86,5 @@
 	    		</div>
 	    	</div>
 	    </section>
+{% include 'partials/_footer.html' %}	  
 {% endblock %}

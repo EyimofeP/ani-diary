@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+		<div id="colorlib-main">
+			<div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{author.picture.url}});" data-stellar-background-ratio="0.5">
+				<div class="overlay"></div>
+				<div class="js-fullheight d-flex justify-content-center align-items-center">
+					<div class="col-md-8 text text-center">
+						<div class="img mb-4" style="background-image: url({{author.picture.url}});"></div>
+						<div class="desc">
+							<h2 class="subheading">Hello I'm</h2>
+							<h1 class="mb-4">{{author.name|title}}</h1>
+							<p class="mb-4">{{author.bio}}</p>
+							<ul class="ftco-social mt-3">
+                {% if author.phone %}
+                  <li class="ftco-animate"><a href="https://wa.me/{{author.phone}}"><span class="icon-whatsapp"></span></a></li>
+                {% endif %}
+                {% if author.email %}
+                  <li class="ftco-animate"><a href="mailto:{{author.email}}"><span class="icon-google"></span></a></li>
+                {% endif %}
+                {% if author.instagram %}
+                  <li class="ftco-animate"><a href="https://instagram.com/{{author.instagram}}/"><span class="icon-instagram"></span></a></li>
+                {% endif %}
+              </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endblock %}

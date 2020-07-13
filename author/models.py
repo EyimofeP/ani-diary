@@ -13,4 +13,4 @@ class Author(models.Model):
 	date_joined = models.DateTimeField(auto_now_add =True)
 	#Setting name for object
 	def __str__(self):
-		return self.name
+		return self.name 

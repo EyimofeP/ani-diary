@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div id="colorlib-main">
+            <div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_1.jpg'%});"
+                data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="js-fullheight d-flex justify-content-center align-items-center">
+                    <div class="col-md-8 text text-center">
+                        <div class="desc">
+                            <h1 class="mb-4">Our Authors</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row">
+                        	{% if authors %}
+	                    	{% for author in authors %}
+		                        <div class="col-md-4">
+		                            <div class="blog-entry ftco-animate">
+		                                <a href="{% url 'blog:about' author.author.username %}" class="img img-2" style="background-image: url({{ author.picture.url }});"></a>
+		                                <div class="text text-2 pt-2 mt-3">
+		                                    <h3 class="mb-4"><a href="{% url 'blog:about' author.author.username %}">{{ author.name|title }}</a></h3>
+		                                </div>
+		                            </div>
+		                        </div>
+		                     {% endfor %}
+		                </div>
+		                <div class="col-md-4"></div>
+		                	<div class="col-md-4"></div>
+		                {% else %}
+		                	<h1>No Authors</h1>
+		                {% endif %}
+		                	
+		               
+            </section>
+{% include 'partials/_footer.html' %}           
+{% endblock %}

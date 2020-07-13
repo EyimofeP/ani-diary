@@ -14,9 +14,10 @@ urlpatterns = [
 	path("blog/article/<pk>/",views.article, name="article"),
 	#rhos.com/category
 	path("category/",views.categoryPage, name="category"),
-	#path("category/",views.Category.as_view(), name="category"),
+	#rhos.com/category/23/
+	path("category/<pk>/",views.category, name="category-page"),
 	#rhos.com/about-us
-	path("about-us/",views.about, name="about"),
-	#rhos.com/search
-	path("search/",views.search, name="search"),
+	path("about-us/",views.about, name="about-page"),
+	#rhos.com/about-us/@2/
+	path("about-us/@<username>/",views.author, name="about"),
 ]

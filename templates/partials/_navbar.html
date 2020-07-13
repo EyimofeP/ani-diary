@@ -1,6 +1,6 @@
 <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
         <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-            <h1 id="colorlib-logo"><a href="/">Rho's <span>Diary</span></a></h1>
+            <h1 id="colorlib-logo"><a href="/">Ani's <span>Diary</span></a></h1>
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
                     <li 
@@ -18,8 +18,11 @@
                       class="colorlib-active"
                     {% endif %}
                     ><a href="{% url 'blog:category' %}">Categories</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li
+                    {% if "about" in request.path %}
+                      class="colorlib-active"
+                    {% endif %}
+                    ><a href="{% url 'blog:about-page' %}">About</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'author:profile' %}">Profile ({{user.first_name}})</a></li>
                          <li><a href="javascript:{document.getElementById('logout').submit()}">Logout</a></li>
@@ -37,11 +40,6 @@
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> Rho's Diary
-                <ul>
-                    <li><a href="#"><i class="icon-whatsapp"></i></a></li>
-                    <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a href="#"><i class="icon-instagram"></i></a></li>
-                </ul>
+                    <script>document.write(new Date().getFullYear());</script> Ani's Diary
             </div>
         </aside>

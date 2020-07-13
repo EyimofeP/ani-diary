@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 from .models import Category, Post
+from author.models import Author
 #Home Page
 class Home(ListView):
 	template_name = "blog/home.html"
@@ -19,7 +20,6 @@ def blog(request):
 	paginator = Paginator(posts,6)
 	page = request.GET.get('page')
 	paged_posts = paginator.get_page(page)  
-
 	frontend = {
 		"posts":paged_posts,
 	}
@@ -43,19 +43,28 @@ def categoryPage(request):
 		"categories":category,
 	}
 	return render(request,"blog/category.html",frontend)
-"""
-class Category(ListView):
-	template_name = "blog/category.html"
-	context_object_name = "categories"
 
-	def get_queryset(self):
-		category = 
-		return category"""
+#Category Display Page
+def category(request,pk):
+	category = get_object_or_404(Category,pk=pk)
+	frontend = {
+		"category":category,
+	}
+	return render(request,"blog/category-display.html",frontend)
 
-#About Page
+#Author Display Page
+def author(request,username):
+	authors = get_object_or_404(Author,author__username=username)
+	frontend = {
+		"author":authors,
+	}
+	return render(request,"blog/about.html",frontend)
+
 def about(request):
-	return HttpResponse("About")
+	authors = Author.objects.all()
 
-#Search Page
-def search(request):
-	return HttpResponse("Search")
+	frontend = {
+		"authors":authors,
+	}
+	return render(request,"blog/about-us.html",frontend)
+	
