@@ -110,6 +110,7 @@ class CategoryDelete(DeleteView):
 	model = Category
 	success_url = reverse_lazy("author:profile")
 
+#Create Tag
 class TagCreate(CreateView):
 	model = Tag
 	fields = "__all__"

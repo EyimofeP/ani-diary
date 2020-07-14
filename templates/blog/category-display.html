@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+    {{category.name|title}}'s Secrets
+{% endblock %}
 {% load static %}
 {% block content %}
 	<div id="colorlib-main">
@@ -25,16 +28,16 @@
 	                    	{% for post in category.post_set.all %}
 		                        <div class="col-md-4">
 		                            <div class="blog-entry ftco-animate">
-		                                <a href="{% url 'blog:article' post.pk %}" class="img img-2" style="background-image: url({{ post.post_picture.url  }});"></a>
+		                                <a href="{% url 'blog:article' post.pk post.slug %}" class="img img-2" style="background-image: url({{ post.post_picture.url  }});"></a>
 		                                <div class="text text-2 pt-2 mt-3">
 		                                	{% if post.category %}
 			                                	<span class="category mb-3 d-block">
 				                                	{% for category in post.category.all %}
-				                                    	<a href="#">{{ category.name  }}..</a>
+				                                    	<a href="{% url 'blog:category-page' category.id%}">{{ category.name  }}..</a>
 				                                    {% endfor %}
 				                                </span>
 				                            {% endif %}
-		                                    <h3 class="mb-4"><a href="{% url 'blog:article' post.pk %}">{{ post.title }}</a></h3>
+		                                    <h3 class="mb-4"><a href="{% url 'blog:article' post.pk post.slug %}">{{ post.title }}</a></h3>
 		                                    <p class="mb-4">{{ post.short_description }}</p>
 		                                    <div class="author mb-4 d-flex align-items-center">
 		                                        <a href="{% url 'blog:about' post.author.author.username %}" class="img" style="background-image: url({{post.author.picture.url}});"></a>
@@ -45,7 +48,7 @@
 		                                    </div>
 		                                    <div class="meta-wrap align-items-center">
 		                                        <div class="half">
-		                                            <p><a href="{% url 'blog:article' post.pk %}" class="btn py-2">Continue Reading <span
+		                                            <p><a href="{% url 'blog:article' post.pk post.slug %}" class="btn py-2">Continue Reading <span
 		                                                        class="ion-ios-arrow-forward"></span></a></p>
 		                                        </div>
 		                                    </div>

@@ -13,6 +13,9 @@ class Category(models.Model):
 	description = models.TextField(max_length=200, null=True)
 	picture = models.ImageField(upload_to="category/",null=True, default="category/default.jpg")
 	
+	class Meta:
+		verbose_name_plural = "Categories"
+
 	def __str__(self):
 		return self.name
 
@@ -29,7 +32,7 @@ class Tag(models.Model):
 
 	def get_absolute_url(self):
 		return reverse("author:create-tag")
-
+ 
 #Post DB
 class Post(models.Model): 
 	author = models.ForeignKey(Author,on_delete=models.DO_NOTHING,null=True)
@@ -46,5 +49,18 @@ class Post(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse("blog:home")
+		return reverse("author:profile")
 
+class Comment(models.Model):
+	post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comments",null=True)
+	name = models.CharField(max_length=200, null=True)
+	email = models.EmailField(null=True)
+	body = models.TextField(null=True)
+	created = models.DateTimeField(auto_now_add=True,null=True)
+	active = models.BooleanField(default=True,null=True)
+
+	class Meta:
+		ordering = ['created']
+
+	def __str__(self):
+		return f"Comment on {self.post.title} by {self.name}"

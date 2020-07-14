@@ -11,7 +11,7 @@ urlpatterns = [
 	#rhos.com/blog
 	path("blog/",views.blog, name="blog"),
 	#rhos.com/blog/hello-world/
-	path("blog/article/<pk>/",views.article, name="article"),
+	path("blog/article/<int:pk>/<slug:slug>/",views.article, name="article"),
 	#rhos.com/category
 	path("category/",views.categoryPage, name="category"),
 	#rhos.com/category/23/

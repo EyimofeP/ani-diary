@@ -1,21 +1,28 @@
 {% extends 'base.html'%}
+{% block title %}
+    Our Categories
+{% endblock %}
 {% block content %}
 		<div id="colorlib-main">
 			<section class="ftco-section-2">
 				<div class="photograhy">
 					<div class="row no-gutters">
-						{% for category in categories %}
-							<div class="col-md-3">
-								<a href="{% url 'blog:category-page' category.id%}" class="photography-entry img d-flex justify-content-center align-items-center"
-									style="background-image: url({{category.picture.url}});">
-									<div class="overlay"></div>
-									<div class="text text-center">
-										<h3>{{category.name}}</h3>
-										<span>({{category.post_set.count}} Articles)</span>
-									</div>
-								</a>
-							</div>
-						{% endfor %}
+						{% if categories %}
+							{% for category in categories %}
+								<div class="col-md-3">
+									<a href="{% url 'blog:category-page' category.id%}" class="photography-entry img d-flex justify-content-center align-items-center"
+										style="background-image: url({{category.picture.url}});">
+										<div class="overlay"></div>
+										<div class="text text-center">
+											<h3>{{category.name}}</h3>
+											<span>({{category.post_set.count}} Articles)</span>
+										</div>
+									</a>
+								</div>
+							{% endfor %}
+						{% else %}
+							<h1>No Categories Yet</h1>
+						{% endif %}
 					</div>
 				</div>
 			</section>

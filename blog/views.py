@@ -4,7 +4,10 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 from django.core.paginator import Paginator
 
-from .models import Category, Post
+
+from .forms import CommentForm
+
+from .models import Category, Post, Comment
 from author.models import Author
 #Home Page
 class Home(ListView):
@@ -26,12 +29,22 @@ def blog(request):
 	return render(request,"blog/blog.html",frontend)
 
 #Article page
-def article(request, pk):
-	article = get_object_or_404(Post,pk=pk)
+def article(request, slug,pk):
+	article = get_object_or_404(Post,slug=slug, pk=pk)
 	trends = Post.objects.order_by("-date")[:3]
+	comments = article.comments.filter(active=True)
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			form.save()
+	else:
+		form = CommentForm()
+		
 	frontend = {
 		"trends":trends,
 		"article":article,
+		"form" : form,
+		"comments" : comments,
 	}
 	return render(request,"blog/article.html",frontend)
 

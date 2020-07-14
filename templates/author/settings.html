@@ -1,4 +1,7 @@
 {% extends 'fort.html' %}
+{% block title %}
+    {{user.username|title}}'s Profile
+{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container mt-5">
