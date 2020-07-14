@@ -60,7 +60,7 @@
 		                  </div>
 		                  <div class="comment-body">
 		                    <h3>{{comment.name}}</h3>
-		                    <div class="meta">{{comment.created|date:"F d, Y" }} at 2:21pm</div>
+		                    <div class="meta">{{comment.created|date:"F d, Y" }} at {{comment.created|date:"H:m" }}</div>
 		                    <p>{{ comment.body }}</p>
 		                  </div>
 		                </li>
@@ -69,9 +69,6 @@
 	              <!-- END comment-list -->
 	              
 	              <div class="comment-form-wrap pt-5">
-	              	{% if new_comment %}
-		                <h3 class="mb-5">Your Comment is Awaiting Confirmation</h3>
-		            {% else %}
 		            	<h3 class="mb-5">Leave a comment</h3>
 		                <form class="p-3 p-md-5 bg-light" method="POST">
 		                	{% csrf_token %}
@@ -88,7 +85,6 @@
 		                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
 		                  </div>
 		                </form>
-		            {% endif %}
 	              </div>
 	            </div>
 	          </div>

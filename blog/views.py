@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 from django.views.generic import ListView
 from django.core.paginator import Paginator
@@ -33,13 +33,16 @@ def article(request, slug,pk):
 	article = get_object_or_404(Post,slug=slug, pk=pk)
 	trends = Post.objects.order_by("-date")[:3]
 	comments = article.comments.filter(active=True)
+	new_comment = None
+	#form =  CommentForm()
+	form = CommentForm()
 	if request.method == "POST":
 		form = CommentForm(request.POST)
 		if form.is_valid():
-			form.save()
-	else:
-		form = CommentForm()
-		
+			new_comment = form.save(commit=True)
+			new_comment.post = article
+			new_comment.save()
+			return HttpResponseRedirect(request.path_info)
 	frontend = {
 		"trends":trends,
 		"article":article,
