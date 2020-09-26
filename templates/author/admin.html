@@ -4,6 +4,7 @@
 {% endblock %}
 {% block content %}
     <div class="container mt-2">
+        {% include 'partials/_messages.html' %}
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h1 class="display-4 text-center">Welcome {{user.author.name}}!</h1>
@@ -38,7 +39,7 @@
                                   <div class="card-body">
                                     <h5 class="card-title">{{ post.title }}</h5>
                                     <p class="card-text">{{post.short_description}}</p>
-                                    <a href="{% url 'blog:article' post.id post.slug %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'blog:article' post.id post.slug %}" class="btn btn-primary" target="_blank">View</a>
                                     <a href="{% url 'author:update-post' post.id %}" class="btn btn-success"><i class="fas fa-pen"></i></a>
                                     <form action="{% url 'author:delete-post' post.id %}" method="post" style="display: inline;">
                                         {% csrf_token %}
@@ -49,6 +50,8 @@
                                 </div>
                             </div>
                         {% endfor %}
+                    {% else %}
+                        <h4 class="display-4 text-center ml-5 mr-5 mt-2" style="font-size: 51px;">You haven't Created any Post</h4>
                     {% endif %}
                     
                 </div>

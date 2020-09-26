@@ -22,6 +22,6 @@ urlpatterns = [
    path("profile/create/tag/", views.TagCreate.as_view(), name="create-tag"),
    
    path("profile/create/category/", views.CategoryCreate.as_view(), name="create-category"),
-   path("profile/edit/category/<pk>", views.CategoryUpdate.as_view(), name="update-category"),
-   path("profile/delete/category/<pk>", views.CategoryDelete.as_view(), name="delete-category"),
+   #path("profile/edit/category/<pk>", views.CategoryUpdate.as_view(), name="update-category"),
+   #path("profile/delete/category/<pk>", views.CategoryDelete.as_view(), name="delete-category"),"""
 ]

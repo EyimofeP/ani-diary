@@ -145,3 +145,11 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "pinnick7822@run.edu.ng"
 EMAIL_HOST_PASSWORD = "User2013"
+
+#MESSAGES
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+MESSAGES_STORAGE = 'django.contrib.messages.storage.sessions.SessionStorage'

@@ -59,14 +59,16 @@
      <footer>
         <nav class="navbar fixed-bottom">
             <div class="container">
-                <a class="text-white text-center" href="#">2020 Ani's Diary</a>
+                <a class="text-white text-center" href="{% url 'author:profile' %}">Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> Ani's Diary</a>
             </div>
         </nav>
     </footer>
 
-    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/all.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 </body>
 
 </html>
